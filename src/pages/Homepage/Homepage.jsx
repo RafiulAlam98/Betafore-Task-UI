@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { removeUserToken } from "../../services/auth";
 import { authKey } from "../../components/constant/authKey";
+import useProducts from "../../hooks/useProducts";
+import Loading from "../../components/ui/Loading";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -13,6 +15,11 @@ const Homepage = () => {
 
     return () => clearTimeout(timeout);
   }, []);
+  const [products, loading] = useProducts();
+  if (loading) {
+    return <Loading />;
+  }
+  console.log(products);
   return (
     <div className="max-width-[800px] mx-auto ">
       <h2>this is homepage</h2>

@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
+import { getFromLocalStorage } from "../helpers/utils/saveData";
+import { authKey } from "../components/constant/authKey";
 
 const useProducts = () => {
   let [products, setProducts] = useState([]);
   let [displayProduct, setDisplayProduct] = useState([]);
   const [loading, setLoading] = useState(false);
+  const token = getFromLocalStorage(authKey);
 
   useEffect(() => {
     setLoading(true);
-    fetch(`https://betafore-task-api.vercel.app/api/v1/products`)
+    fetch(`https://betafore-task-api.vercel.app/api/v1/products`, {
+      method: "GET",
+      headers: {
+        Authorization: `${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        console.log(data.data);
         // setProducts(data);
         // setDisplayProduct(data);
         setLoading(false);
