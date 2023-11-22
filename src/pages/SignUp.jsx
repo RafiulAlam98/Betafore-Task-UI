@@ -9,6 +9,7 @@ const SignUp = () => {
   const [responseData, setResponseData] = useState({});
   const navigate = useNavigate();
   const onSubmit = (data) => {
+    console.log(data);
     setLoading(true);
     fetch("https://betafore-task-api.vercel.app/api/v1/user/signup", {
       method: "POST",
