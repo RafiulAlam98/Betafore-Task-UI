@@ -8,6 +8,7 @@ const stripePromise = loadStripe(
 );
 
 const Payment = () => {
+  console.log(stripePromise);
   const { total } = useSelector((state) => state.cart);
   return (
     <div className=" max-w-[1200px] min-h-screen">

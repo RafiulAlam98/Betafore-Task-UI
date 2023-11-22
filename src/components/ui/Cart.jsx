@@ -31,7 +31,7 @@ const Cart = () => {
             <i className="fa-solid fa-dollar-sign ml-1"></i>
             <span> {parseInt(total)}</span>
           </h2>
-          <Link to="/payment">
+          <Link to="/home/payment">
             <button className="btn btn-sm rounded btn-secondary">
               Checkout
             </button>

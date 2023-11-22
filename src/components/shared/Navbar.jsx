@@ -81,7 +81,7 @@ const Navbar = () => {
       <div className="navbar-end">
         <label
           htmlFor="cart-drawer"
-          className="drawer-button btn btn-sm btn-primary rounded capitalize mr-4"
+          className="drawer-button btn btn-sm btn-secondary rounded capitalize mr-4"
         >
           Open Cart
         </label>
