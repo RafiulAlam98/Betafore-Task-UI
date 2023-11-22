@@ -1,0 +1,23 @@
+import { useEffect, useState } from "react";
+
+const useProducts = () => {
+  let [products, setProducts] = useState([]);
+  let [displayProduct, setDisplayProduct] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetch(`https://betafore-task-api.vercel.app/api/v1/products`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // setProducts(data);
+        // setDisplayProduct(data);
+        setLoading(false);
+      });
+  }, []);
+
+  return [products, loading, displayProduct, setDisplayProduct];
+};
+
+export default useProducts;

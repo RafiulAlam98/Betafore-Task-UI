@@ -14,8 +14,9 @@ const Homepage = () => {
     return () => clearTimeout(timeout);
   }, []);
   return (
-    <div>
+    <div className="max-width-[800px] mx-auto ">
       <h2>this is homepage</h2>
+      <h1>Products</h1>
     </div>
   );
 };
