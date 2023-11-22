@@ -1,0 +1,86 @@
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { MdDashboardCustomize } from "react-icons/Md";
+import { authEmail, authKey } from "../constant/authKey";
+import { removeUserId, removeUserToken } from "../../services/auth";
+
+/* eslint-disable react/prop-types */
+const DashboardLayout = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    removeUserToken(authKey);
+    removeUserId(authEmail);
+    navigate("/login");
+  };
+  return (
+    <div className="drawer lg:drawer-open">
+      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content">
+        <div className="navbar bg-[#023047] lg:hidden">
+          <div className="flex justify-end items-center">
+            <button className="flex justify-end items-center">
+              <label
+                htmlFor="my-drawer-2"
+                className="btn btn-square btn-ghost  "
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="inline-block w-5 h-5 stroke-current text-white"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </label>
+            </button>
+          </div>
+        </div>
+
+        <Outlet />
+      </div>
+      <div className="drawer-side">
+        <label
+          htmlFor="my-drawer-2"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
+        <ul className="menu p-4 w-64 min-h-full bg-[#023047] text-base-content">
+          <Link to="/dashboard" className="">
+            <h1 className="text-3xl mb-6 text-center text-[#ede0d4] font-semibold ">
+              TASK MANAGEMENT
+            </h1>
+          </Link>
+          {/* Sidebar content here */}
+          <li className="my-1">
+            <Link
+              className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 "
+              to="/dashboard"
+            >
+              <span>
+                <MdDashboardCustomize />
+              </span>{" "}
+              <span> Dashboard</span>
+            </Link>
+          </li>
+          <li className="my-1">
+            <button
+              onClick={handleLogout}
+              className="text-white text-xl font-semibold hover:text-blue-600 hover:bg-slate-100 "
+            >
+              <span>
+                <i className="fa-solid fa-arrow-right-from-bracket"></i>
+              </span>
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
+};
+
+export default DashboardLayout;
