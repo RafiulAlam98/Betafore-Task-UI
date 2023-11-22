@@ -1,6 +1,16 @@
+import { useNavigate } from "react-router-dom";
+import { removeUserId, removeUserToken } from "../../services/auth";
+import { authEmail, authKey } from "../constant/authKey";
+
 const Navbar = () => {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    removeUserToken(authKey);
+    removeUserId(authEmail);
+    navigate("/login");
+  };
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-600">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -42,7 +52,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">App</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -67,8 +77,23 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <label
+          htmlFor="cart-drawer"
+          className="drawer-button btn btn-sm btn-primary rounded capitalize mr-4"
+        >
+          Open Cart
+        </label>
+        <button
+          onClick={handleLogout}
+          className="btn btn-sm btn-warning rounded "
+        >
+          <span>
+            <i className="fa-solid fa-arrow-right-from-bracket"></i>
+          </span>
+          Logout
+        </button>
       </div>
     </div>
   );
