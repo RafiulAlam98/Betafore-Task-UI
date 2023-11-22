@@ -2,8 +2,9 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { removeUserToken } from "../../services/auth";
 import { authKey } from "../../components/constant/authKey";
-import useProducts from "../../hooks/useProducts";
-import Loading from "../../components/ui/Loading";
+
+import Products from "./Products";
+import Cart from "../../components/ui/Cart";
 
 const Homepage = () => {
   const navigate = useNavigate();
@@ -15,15 +16,15 @@ const Homepage = () => {
 
     return () => clearTimeout(timeout);
   }, []);
-  const [products, loading] = useProducts();
-  if (loading) {
-    return <Loading />;
-  }
-  console.log(products);
+
   return (
-    <div className="max-width-[800px] mx-auto ">
-      <h2>this is homepage</h2>
-      <h1>Products</h1>
+    <div className="max-w-[1000px] mx-auto">
+      <h1 className="text-4xl text-purple-600 font-semibold m-8">
+        {" "}
+        <span className="border-b-2 border-purple-600">All Products</span>
+      </h1>
+      <Products />
+      <Cart />
     </div>
   );
 };
