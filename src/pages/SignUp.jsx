@@ -50,9 +50,6 @@ const SignUp = () => {
           <div className="w-full">
             <FormInput name="password" label="Password" type="password" />
           </div>
-          <div className="w-full">
-            <FormInput name="phoneNo" label="Phone" type="text" />
-          </div>
 
           {loading ? (
             <span className="loading loading-spinner loading-lg"></span>
