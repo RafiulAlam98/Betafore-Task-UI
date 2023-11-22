@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import CartProduct from "./CartProduct";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { products, total } = useSelector((state) => state.cart);
@@ -28,9 +29,13 @@ const Cart = () => {
           <h2 className="text-xl font-semibold mt-8">Sub Total</h2>
           <h2 className="text-sm mb-5 font-semibold text-secondary">
             <i className="fa-solid fa-dollar-sign ml-1"></i>
-            <span> {parseInt(total).toFixed(2)}</span>
+            <span> {parseInt(total)}</span>
           </h2>
-          <button className="btn btn-sm rounded btn-secondary">Checkout</button>
+          <Link to="/payment">
+            <button className="btn btn-sm rounded btn-secondary">
+              Checkout
+            </button>
+          </Link>
         </ul>
       </div>
     </div>

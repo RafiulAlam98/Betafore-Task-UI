@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Outlet, useNavigate } from "react-router-dom";
 import Navbar from "../shared/Navbar";
 import Footer from "../shared/Footer";
 import { useEffect } from "react";
-import { removeUserToken } from "../../services/auth";
-import { authKey } from "../constant/authKey";
+import { removeUserId, removeUserToken } from "../../services/auth";
+import { authEmail, authKey } from "../constant/authKey";
 import toast from "react-hot-toast";
 
 const MainLayout = () => {
@@ -11,6 +12,7 @@ const MainLayout = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       removeUserToken(authKey);
+      removeUserId(authEmail);
       navigate("/login");
       toast.error("You are logged out");
     }, 120000);
